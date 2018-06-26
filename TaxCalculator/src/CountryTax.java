@@ -28,9 +28,9 @@ public class CountryTax {
 	private ArrayList<Double> brackets;
 	private ArrayList<Double> percentages;
 
-	public CountryTax(String country, Double bracket1, Double bracket2, Double bracket3, Double bracket4, Double bracket5, Double bracket6, 
-	                  Double bracket7, Double percentage1, Double percentage2, Double percentage3, Double percentage4, 
-										Double percentage5, Double percentage6, Double percentage7, Double income)
+	public CountryTax(String country, Double bracket1, Double bracket2, Double bracket3, Double bracket4, Double bracket5, 
+			          Double bracket6, Double bracket7, Double percentage1, Double percentage2, Double percentage3, 
+			          Double percentage4, Double percentage5, Double percentage6, Double percentage7, Double income)
 	{
 		brackets = new ArrayList<Double>();
 		percentages = new ArrayList<Double>();
