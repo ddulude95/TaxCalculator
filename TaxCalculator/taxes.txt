@@ -1,0 +1,7 @@
+# Tax object data 
+#
+# The format is comma separated values, starting with the country name, and then as many tax brackets
+# as you need
+#
+United States,10000,30000,70000,90000,0,0,0,0.20,0.25,0.30,0.35,0.40,0.45,0.50
+Canada,5000,15000,50000,90000,100000,0,0,.10,.15,.30,.40,.50,0,0

@@ -1,0 +1,61 @@
+public void fill() throws FileNotFoundException
+	{
+	 Scanner scanner = new Scanner(new File("groceryItems.txt")); 
+      
+	    while(scanner.hasNextLine())
+	    { 
+        	String name1 = "";
+	  		Double price1 = 0.0;
+	  		int volume1 = 0;
+	  		int weight1 = 0; 
+	    	String line = scanner.nextLine();
+        	
+	    	Scanner lineScanner = new Scanner(line);
+	    	while(lineScanner.hasNext())
+	    	{
+	    		int textFoodCode = lineScanner.nextInt(); 
+	    		
+	    		String firstLabel = "";
+	    		firstLabel = lineScanner.next();
+	        
+	    		if (firstLabel.equals("Dairy"))
+	        	{        		
+	    			while(!lineScanner.hasNextDouble())
+	    			{
+	    				name1 += lineScanner.next(); 
+	    			}
+	    			price1 = lineScanner.nextDouble(); 
+	    			volume1 = lineScanner.nextInt(); 
+	    			Dairy dairy1 = new Dairy(textFoodCode, name1, price1, volume1);  
+	    			addItem(dairy1);
+	        	}
+										
+	    		else if (firstLabel.equals("Meat"))
+	        	{	        	
+	        		while(!lineScanner.hasNextDouble())
+	        		{
+	        			name1 += lineScanner.next(); 
+	        		}
+	        		price1 = lineScanner.nextDouble();
+	        		weight1 = lineScanner.nextInt();
+	        		Meat meat1 = new Meat(textFoodCode, name1, price1, weight1);
+	        		addItem(meat1);
+					
+	        	}
+	    		else
+	    		{
+	    			if(lineScanner.hasNextDouble()) 
+	    			{
+	    				name1 += firstLabel;
+	    			}
+	    			price1 = lineScanner.nextDouble();
+	    			GroceryItem item1 = new GroceryItem(textFoodCode, name1, price1);
+	    			addItem(item1); 
+	    		}
+	    	}
+	    	lineScanner.close(); 
+	    }
+	    scanner.close(); 
+	}
+	    	
+	}
