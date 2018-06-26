@@ -2,31 +2,31 @@ import java.util.ArrayList;
 
 public class CountryTax {
 	
-	String country = ""; 
-	Double bracket1 = 0.0; 
-	Double bracket2 = 0.0;
-	Double bracket3 = 0.0;
-	Double bracket4 = 0.0;
-	Double bracket5 = 0.0;
-	Double bracket6 = 0.0;
-	Double bracket7 = 0.0;
-	Double percentage1 = 0.0;
-	Double percentage2 = 0.0; 
-	Double percentage3 = 0.0;
-	Double percentage4 = 0.0; 
-	Double percentage5 = 0.0;
-	Double percentage6 = 0.0;
-	Double percentage7 = 0.0;
-	Double income = 0.0; 
-	Double total = 0.0; 
-	Double deduction1 = 0.0;
-	Double deduction2 = 0.0;
-	Double deduction3 = 0.0; 
-	Double deduction4 = 0.0;
-	Double deduction5 = 0.0; 
-	ArrayList<Double> taxedAmounts;
-	ArrayList<Double> brackets;
-	ArrayList<Double> percentages;
+	private String country = ""; 
+	private Double bracket1 = 0.0; 
+	private Double bracket2 = 0.0;
+	private Double bracket3 = 0.0;
+	private Double bracket4 = 0.0;
+	private Double bracket5 = 0.0;
+	private Double bracket6 = 0.0;
+	private Double bracket7 = 0.0;
+	private Double percentage1 = 0.0;
+	private Double percentage2 = 0.0; 
+	private Double percentage3 = 0.0;
+	private Double percentage4 = 0.0; 
+	private Double percentage5 = 0.0;
+	private Double percentage6 = 0.0;
+	private Double percentage7 = 0.0;
+	private Double income = 0.0; 
+	private Double total = 0.0; 
+	private Double deduction1 = 0.0;
+	private Double deduction2 = 0.0;
+	private Double deduction3 = 0.0; 
+	private Double deduction4 = 0.0;
+	private Double deduction5 = 0.0; 
+	private ArrayList<Double> taxedAmounts;
+	private ArrayList<Double> brackets;
+	private ArrayList<Double> percentages;
 
 	public CountryTax(String country, Double bracket1, Double bracket2, Double bracket3, Double bracket4, Double bracket5, Double bracket6, 
 	                  Double bracket7, Double percentage1, Double percentage2, Double percentage3, Double percentage4, 
@@ -95,7 +95,13 @@ public class CountryTax {
 		return income;
 	}
 	
-	public ArrayList<Double> getTotal()
+	public double getTotal()
+	{
+		return total;
+	}
+	
+	// returns an arraylist of all the deductions + a total
+	public ArrayList<Double> calculateTotal()
 	{
 		if(income <= bracket1)
 		{

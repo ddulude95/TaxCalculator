@@ -9,8 +9,7 @@ public class TaxDriver {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		// TODO: Maybe move this to its own class?
-		// and finish the parser, incorporating the variables to collect
+		// This is just a tester for now
 		Scanner scanner = new Scanner(new File("taxes.txt"));
 		String token = "";
 		String countryToFind = "United States";
@@ -61,7 +60,9 @@ public class TaxDriver {
 					percentage7 = lineScanner.nextDouble();			
 				}	
 			}
+			lineScanner.close();
 		}
+		scanner.close();
 		
 		
 		ArrayList<Double> taxTotals = new ArrayList<Double>();
@@ -70,7 +71,7 @@ public class TaxDriver {
 		CountryTax taxTest = new CountryTax(countryToFind,bracket1,bracket2,bracket3,bracket4,bracket5,bracket6,bracket7,
 								percentage1,percentage2,percentage3,percentage4,percentage5,percentage6,percentage7,125314.0);
 		//taxTest.setIncome(89000.0);
-		taxTotals = taxTest.getTotal();
+		taxTotals = taxTest.calculateTotal();
 		
 		// A for loop to parse and print the tax
         // deductions
