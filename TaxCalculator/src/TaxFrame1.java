@@ -38,8 +38,10 @@ public class TaxFrame1 extends JFrame {
 	private JTextField textField_1;
 	private Scanner scanner; 
 	private Scanner lineScanner;
-	private CountryTax countryOperator = new CountryTax(); 
-	private JTextArea txtr;
+	private CountryTax countryOperator; 
+	private String country;
+	private Double income;
+	private JTextArea taxDisplayArea;
 	private JTextField textField;
 	/**
 	 * Launch the application.
@@ -90,17 +92,17 @@ public class TaxFrame1 extends JFrame {
 		JLabel lblOperations = new JLabel("Operations");
 		lblOperations.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		
-		JButton btnNewButton_1 = new JButton("Set Income");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btn_setIncome = new JButton("Set Income");
+		btn_setIncome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) throws NumberFormatException {
 				if(!textField_1.getText().equals("")) {
-				countryOperator.setIncome(Double.parseDouble(textField_1.getText()));
-				textField.setText(Double.toString(countryOperator.getIncome()));
+				income = Double.parseDouble(textField_1.getText());
+				textField.setText(Double.toString(income));
 				}
 			}
 		});
 		
-		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		btn_setIncome.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
@@ -109,8 +111,8 @@ public class TaxFrame1 extends JFrame {
 		
 		JComboBox<String> comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				countryOperator.setCountry(comboBox.getSelectedItem().toString());
+			public void actionPerformed(ActionEvent e) {				
+				country = comboBox.getSelectedItem().toString();
 			}
 		});
 		comboBox.setActionCommand("");
@@ -142,8 +144,14 @@ public class TaxFrame1 extends JFrame {
 		btnCalculateTax.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 try {
+					 country = comboBox.getSelectedItem().toString();
+					 try {
+						initTaxObject(country,income);
+					} catch (FileNotFoundException e) {
+						System.out.println(e);;
+					}
 					 countryOperator.calculateTotal();
-					 txtr.setText(Double.toString(countryOperator.getTotal()));
+					 taxDisplayArea.setText(Double.toString(countryOperator.getTotal()));
 				 }
 				 catch(NullPointerException e)
 				 {
@@ -152,7 +160,7 @@ public class TaxFrame1 extends JFrame {
 			}
 		});
 		
-		txtr = new JTextArea();
+		taxDisplayArea = new JTextArea();
 		
 		JLabel lblSetCountry = new JLabel("Set Country");
 		
@@ -188,10 +196,10 @@ public class TaxFrame1 extends JFrame {
 									.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
 										.addComponent(btnCalculateTax)
 										.addGap(27)
-										.addComponent(txtr, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE))))
+										.addComponent(taxDisplayArea, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE))))
 							.addGap(563))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(btnNewButton_1)
+							.addComponent(btn_setIncome)
 							.addContainerGap(1118, Short.MAX_VALUE))))
 		);
 		gl_panel.setVerticalGroup(
@@ -210,21 +218,75 @@ public class TaxFrame1 extends JFrame {
 						.addComponent(lblSetCountry))
 					.addGap(36)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1)
+						.addComponent(btn_setIncome)
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblIncome))
 					.addGap(44)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCalculateTax)
-						.addComponent(txtr, GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE))
+						.addComponent(taxDisplayArea, GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(groupLayout);
 	}
-	public CountryTax getCount()
+	
+	private void initTaxObject(String country, Double income) throws FileNotFoundException
 	{
-		return countryOperator; 
+		Scanner scanner = new Scanner(new File("taxes.txt"));
+		String token = "";
+		Double percentage1 = 0.0;
+		Double percentage2 = 0.0; 
+		Double percentage3 = 0.0;
+		Double percentage4 = 0.0; 
+		Double percentage5 = 0.0;
+		Double percentage6 = 0.0;
+		Double percentage7 = 0.0;
+		Double bracket1 = 0.0; 
+		Double bracket2 = 0.0;
+		Double bracket3 = 0.0;
+		Double bracket4 = 0.0;
+		Double bracket5 = 0.0;
+		Double bracket6 = 0.0;
+		Double bracket7 = 0.0;
+		
+		
+		while(scanner.hasNextLine()) { // start while1
+			String line = scanner.nextLine();
+			Scanner lineScanner = new Scanner(line);
+			lineScanner.useDelimiter(",");
+			
+			// this if statement checks for comment lines
+			if (!line.startsWith("#")) {
+				// start going through the tokens in the line
+				// and only continuing if this is the country we want
+				if (line.startsWith(country)) {
+					lineScanner.next();
+					// we are expecting exactly 15 tokens from the text file
+					// otherwise we will get a null pointer.
+					
+					bracket1 = lineScanner.nextDouble();
+					bracket2 = lineScanner.nextDouble();
+					bracket3 = lineScanner.nextDouble();
+					bracket4 = lineScanner.nextDouble();
+					bracket5 = lineScanner.nextDouble();
+					bracket6 = lineScanner.nextDouble();
+					bracket7 = lineScanner.nextDouble();
+					percentage1 = lineScanner.nextDouble();
+					percentage2 = lineScanner.nextDouble();
+					percentage3 = lineScanner.nextDouble();
+					percentage4 = lineScanner.nextDouble();
+					percentage5 = lineScanner.nextDouble();
+					percentage6 = lineScanner.nextDouble();
+					percentage7 = lineScanner.nextDouble();			
+				}	
+			}
+			lineScanner.close();
+		}
+		scanner.close();
+		
+		countryOperator = new CountryTax(country,bracket1,bracket2,bracket3,bracket4,bracket5,bracket6,bracket7,
+				percentage1,percentage2,percentage3,percentage4,percentage5,percentage6,percentage7,income);
 	}
 }
