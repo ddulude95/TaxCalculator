@@ -35,7 +35,7 @@ import java.lang.NumberFormatException;
 public class TaxFrame1 extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField_1;
+	private JTextField incomeTextField;
 	private Scanner scanner; 
 	private Scanner lineScanner;
 	private CountryTax countryOperator; 
@@ -96,8 +96,8 @@ public class TaxFrame1 extends JFrame {
 		JButton btn_setIncome = new JButton("Set Income");
 		btn_setIncome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) throws NumberFormatException {
-				if(!textField_1.getText().equals("")) {
-				income = Double.parseDouble(textField_1.getText());
+				if(!incomeTextField.getText().equals("")) {
+				income = Double.parseDouble(incomeTextField.getText());
 				textField.setText(Double.toString(income));
 				}
 			}
@@ -105,8 +105,8 @@ public class TaxFrame1 extends JFrame {
 		
 		btn_setIncome.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		incomeTextField = new JTextField();
+		incomeTextField.setColumns(10);
 		
 		
 		
@@ -145,6 +145,7 @@ public class TaxFrame1 extends JFrame {
 		btnCalculateTax.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 try {
+					 income = Double.parseDouble(incomeTextField.getText());
 					 country = comboBox.getSelectedItem().toString();
 					 try {
 						initTaxObject(country,income);
@@ -188,7 +189,7 @@ public class TaxFrame1 extends JFrame {
 										.addGap(43)
 										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 											.addGroup(gl_panel.createSequentialGroup()
-												.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addComponent(incomeTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 												.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
 												.addComponent(lblIncome)
 												.addGap(18)
@@ -220,7 +221,7 @@ public class TaxFrame1 extends JFrame {
 					.addGap(36)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btn_setIncome)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(incomeTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblIncome))
 					.addGap(44)
