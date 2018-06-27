@@ -27,6 +27,15 @@ public class CountryTax {
 	private ArrayList<Double> taxedAmounts;
 	private ArrayList<Double> brackets;
 	private ArrayList<Double> percentages;
+	
+	
+	public CountryTax()
+	{
+		country = "";
+		bracket1 = bracket2 = bracket3 = bracket4 = bracket5 = bracket6 = bracket7 = 0.0;
+		percentage1 = percentage2 = percentage3 = percentage4 = percentage5 = percentage6 = percentage7 = 0.0; 
+		income = 0.0; 
+	}
 
 	public CountryTax(String country, Double bracket1, Double bracket2, Double bracket3, Double bracket4, Double bracket5, 
 			          Double bracket6, Double bracket7, Double percentage1, Double percentage2, Double percentage3, 
@@ -90,10 +99,21 @@ public class CountryTax {
 		return country; 
 	}
 	
+	public void setCountry(String country)
+	{
+		this.country = country; 
+	}
+	
 	public double getIncome()
 	{
 		return income;
 	}
+	
+	public void setIncome(Double income)
+	{
+		this.income = income;
+	}
+	
 	
 	public double getTotal()
 	{
@@ -165,12 +185,6 @@ public class CountryTax {
 			}	
 		}	
 		return total;
-	}
-	
-	
-	public void setIncome(Double income)
-	{
-		this.income = income;
 	}
 	
 	

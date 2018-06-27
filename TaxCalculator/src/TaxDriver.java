@@ -2,14 +2,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.ArrayList;
-
+import javax.swing.JFrame; 
 
 
 public class TaxDriver {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
+		doInput();
+		
+		JFrame frame = new TaxFrame1(); 
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("Taxes");
+		frame.setVisible(true);
+		
 		// This is just a tester for now
+		
+		
+	} // end main
+	
+	
+	public static void doInput() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("taxes.txt"));
 		String token = "";
 		String countryToFind = "United States";
@@ -79,7 +92,6 @@ public class TaxDriver {
 		
 		//System.out.println(taxTest.fullToString());
 		//System.out.println(taxTest);
-		
-	} // end main
+	}
 
 } // end class
