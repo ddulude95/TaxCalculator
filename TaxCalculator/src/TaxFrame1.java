@@ -51,6 +51,7 @@ public class TaxFrame1 extends JFrame {
 			public void run() {
 				try {
 					TaxFrame1 frame = new TaxFrame1();
+					frame.setTitle("Tax Calculator");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

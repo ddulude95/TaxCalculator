@@ -9,11 +9,11 @@ public class TaxDriver {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		doInput();
+		//doInput();
 		
 		JFrame frame = new TaxFrame1(); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Taxes");
+		frame.setTitle("Tax Calculator");
 		frame.setVisible(true);
 		
 		// This is just a tester for now

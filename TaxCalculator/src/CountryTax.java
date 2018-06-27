@@ -172,16 +172,16 @@ public class CountryTax {
 	public String getFormattedTotal()
 	{
 		
-		String total = ("Your Country: "+this.country);
-		total += 	   ("\nYour income: "+this.income + "\n");
+		String total = ("Country: "+this.country);
+		total += 	   ("\nIncome: "+this.income + "\n");
 		
 		
 		for (int i = 0; i < taxedAmounts.size(); i++) {
 			if (i != taxedAmounts.size()-1) {
-				total += ("\nTax deduction #"+(i+1)+": "+taxedAmounts.get(i));
+				total += ("\nTax Deduction #"+(i+1)+": "+taxedAmounts.get(i));
 			}
 			else {
-				total += ("\nTotal tax deductions: "+taxedAmounts.get(i));
+				total += ("\nTotal Tax Deductions: "+taxedAmounts.get(i));
 			}	
 		}	
 		return total;
