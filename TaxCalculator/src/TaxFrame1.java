@@ -151,7 +151,7 @@ public class TaxFrame1 extends JFrame {
 						System.out.println(e);;
 					}
 					 countryOperator.calculateTotal();
-					 taxDisplayArea.setText(Double.toString(countryOperator.getTotal()));
+					 taxDisplayArea.setText(countryOperator.getFormattedTotal());
 				 }
 				 catch(NullPointerException e)
 				 {
