@@ -29,6 +29,7 @@ public class CountryTax {
 	private ArrayList<Double> percentages;
 	
 	
+	
 	public CountryTax()
 	{
 		country = "";
@@ -128,39 +129,39 @@ public class CountryTax {
 			  deduction1 = income * percentage1;
 			  taxedAmounts.add(deduction1);
 		}
-		else if(income >= bracket1)
+		if(income > bracket1)
 		{
 			 deduction1 = bracket1 * percentage1;
 			 taxedAmounts.add(deduction1);
 		}
-		if(income <= bracket2 && income > bracket1)
+		if(income < bracket2 && income > bracket1)
 		{
 			 deduction2 = (income - bracket1) * percentage2;
 			 taxedAmounts.add(deduction2);
 		}
-		else if(income >= bracket2)
+		if(income >= bracket2)
 		{
 			 deduction2 = (bracket2 - bracket1) * percentage2;
 			 taxedAmounts.add(deduction2);
 		}
-		if(income <= bracket3 && income > bracket2)
+		if(income < bracket3 && income > bracket2)
 		{
 			 deduction3 = (income - bracket2) * percentage3;
 			 taxedAmounts.add(deduction3);
 		}
-		else if(income >= bracket3)
+		if(income >= bracket3)
 		{
 			 deduction3 = (bracket3 - bracket2) * percentage3;
 			 taxedAmounts.add(deduction3);
 		}
-		if(income <= bracket4 && income > bracket3)
+		if(income < bracket4 && income > bracket3)
 		{
 			 deduction4 = (income - bracket3) * percentage4;
 			 taxedAmounts.add(deduction4);
 		}
 		if(income >= bracket4)
 		{
-			 deduction4 = (bracket4 - bracket3) * percentage4;
+			 deduction4 = (income - bracket3) * percentage4;
 			 taxedAmounts.add(deduction4);
 		}
 		
@@ -173,18 +174,18 @@ public class CountryTax {
 	{
 		
 		String total = ("Country: "+this.country);
-		total += 	   ("\nIncome: "+this.income + "\n");
+		total += 	   ("\nIncome: $"+this.income + "\n");
 		
 		
 		for (int i = 0; i < taxedAmounts.size(); i++) {
 			if (i != taxedAmounts.size()-1) {
-				total += ("\nTax Deduction #"+(i+1)+": "+taxedAmounts.get(i));
+				total += ("\nTax Deduction #"+(i+1)+": $"+taxedAmounts.get(i));
 			}
 			else {
-				total += ("\nTotal Tax Deductions: "+taxedAmounts.get(i));
+				total += ("\n\nTotal Tax Deductions: $"+taxedAmounts.get(i));
 			}	
 		}	
-		return total;
+		return total += ("\n Income After Tax: $" + Double.toString(+this.income - this.total));
 	}
 	
 	
